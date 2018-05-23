@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler,  } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
@@ -13,7 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from "@angular/http";
 import { ProductProvider } from '../providers/product/product';
 import { ProductDetailPage } from '../pages/product-detail/product-detail';
-
+import { FilterModalPage } from '../pages/filter-modal/filter-modal';
 @NgModule({
   declarations: [
     MyApp,
@@ -21,7 +21,8 @@ import { ProductDetailPage } from '../pages/product-detail/product-detail';
     ContactPage,
     HomePage,
     TabsPage,
-    ProductDetailPage
+    ProductDetailPage,
+    FilterModalPage
   ],
   imports: [
     HttpModule,
@@ -35,7 +36,8 @@ import { ProductDetailPage } from '../pages/product-detail/product-detail';
     ContactPage,
     HomePage,
     TabsPage,
-    ProductDetailPage
+    ProductDetailPage,
+    FilterModalPage
   ],
   providers: [
     StatusBar,

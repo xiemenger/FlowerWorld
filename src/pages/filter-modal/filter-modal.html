@@ -7,6 +7,11 @@
 <ion-header>
 
   <ion-navbar>
+    <ion-buttons end>
+      <button ion-button (click)="closeModel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>FilterModal</ion-title>
   </ion-navbar>
 
@@ -14,5 +19,16 @@
 
 
 <ion-content padding>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Female</ion-label>
+      <ion-toggle [(ngModel)]="femaleSelected"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>male</ion-label>
+      <ion-toggle [(ngModel)]="maleSelected"></ion-toggle>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

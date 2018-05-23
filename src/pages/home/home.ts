@@ -11,6 +11,8 @@ import { FilterModalPage } from '../filter-modal/filter-modal';
 })
 export class HomePage {
   public allProducts = [];
+  private femaleSelected: boolean = true;
+  private maleSelected: boolean = true;
 
   constructor(public navCtrl: NavController,
               private productsService: ProductProvider,
@@ -48,9 +50,34 @@ export class HomePage {
     // A Modal is a content pane that goes over the user's current 
     // page. 
     // Usually it is used for making a choice or editing an item.
-    let openFilterModal = this.modelCtrl.create({
-      
-    })
+    let filterStateFromMainPage: object = {
+      femaleSelected: this.femaleSelected,
+      maleSelected: this.maleSelected
+    }
+    let openFilterModal = this.modelCtrl.create(FilterModalPage, filterStateFromMainPage);
+    openFilterModal.onDidDismiss((filterState) => {
+      this.femaleSelected = filterState.femaleSelected;
+      this.maleSelected = filterState.maleSelected;
+      this.productsService.getProducts()
+        .subscribe(allProducts => {
+          let products = allProducts;
+          if (filterState.maleSelected && filterState.femaleSelected){
+            this.allProducts = products;
+          } else if (filterState.maleSelected){
+            this.allProducts = products.filter((product) => {
+              return product.gender !== "female";
+            });
+          } else if (filterState.femaleSelected){
+            this.allProducts = products.filter((product) => {
+              return product.gender !== "male";
+            });
+          } else {
+            this.allProducts = [];
+          }
+        })
+    });
+
+    openFilterModal.present();
   }
 
   // Signals that start of the transition to bring the page into view
